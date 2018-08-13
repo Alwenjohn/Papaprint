@@ -1,0 +1,229 @@
+.col-md-2{
+  background-color: #63ddda;
+  height: 500px;
+  margin:-20px 0px 0px 15px;
+  text-align: center;
+  font-size: 15px;
+  padding: 6px;
+
+}
+.dropdown-menu {
+background-color:  #4267B2;
+}
+.dropdown-menu li a:hover{
+background-color:#3B5CA0;
+}
+
+.navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    background-color: #3B5CA0;
+}
+.navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:active{
+    background-color: #3B5CA0;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #f7fcff;
+    background-color: #3B5CA0;
+}
+
+.col-md-2 li a{
+  margin:0px;
+  color: #333;
+
+}
+.nav.nav-stacked .active a{
+    background-color:#3B88CE;
+}
+.navbar-collapse .navbar-nav .active a{
+  background-color: #3B5CA0;
+}
+.navbar-inverse {
+     background-color: bisque !important;
+     border-color: #080808;
+}
+
+.navbar-inverse li:hover{
+  background-color:#3B5CA0;
+}
+.navbar-inverse li a:active{
+  background-color:#3B5CA0;
+}
+
+
+.navbar-inverse .nav li a{
+  padding: 16px;
+  color: #fff;
+
+}
+.navbar-inverse .container-fluid .navbar-header .navbar-brand{
+	font-family: 'Satisfy', cursive;
+	font-size: 23px;
+	padding: 18px;
+    margin: 0;
+ 	vertical-align: bottom;
+}
+.navbar-inverse .navbar-brand{
+    color: #fff;
+    padding: 16px;
+
+}
+
+.item img{
+  width: 100%;
+  height: 50px;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+    color: white;
+    background-color: #3B5CA0;
+}
+.carousel{
+      transition: 0.3s;
+}
+body{
+		color: #000000;
+		background: #f7fcff;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	.signup-form{
+		width: 400px;
+		margin: 0 auto;
+		padding: 30px 20px;
+		margin-top: -25px;
+
+	}
+	.signup-form h2{
+		color: #636363;
+        margin: 0 0 20px;
+		position: relative;
+		text-align: center;
+    }
+	.signup-form h2:before, .signup-form h2:after{
+		content: "";
+		height: 2px;
+		width: 30%;
+		background: #00b2a5;
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+	}
+	.signup-form h2:before{
+		left: 0;
+
+	}
+	.signup-form h2:after{
+		right: 0;
+	}
+    .signup-form .hint-text{
+		color: #999;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+    .signup-form form{
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #f2f3f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form .form-control{
+		margin-bottom: 20px;
+	}
+	.signup-form .btn{
+        font-size: 16px;
+        font-weight: bold;
+		min-width: 140px;
+        outline: none !important;
+    }
+	.signup-form .row div:first-child{
+		padding-right: 10px;
+	}
+	.signup-form .row div:last-child{
+		padding-left: 10px;
+	}
+    .signup-form a{
+		color: #00b2a5;
+		text-decoration: underline;
+	}
+    .signup-form a:hover{
+		text-decoration: none;
+
+	}
+	.signup-form form a{
+		color: white;
+		text-decoration: none;
+	}
+	.signup-form form a:hover{
+		text-decoration: #00b2a5;
+	}
+    .navbar-brand
+    {
+        margin-top: -30px;
+    }
+	.text-center a
+	{
+		color: #5cb85c;
+		bottom: -10px;
+	}
+	.or-seperator {
+		margin: 20px 0 10px;
+		text-align: center;
+		border-top: 1px solid #ccc;
+	}
+	/* Shared */
+	.loginBtn {
+	  box-sizing: border-box;
+	  position: relative;
+	  /* width: 13em;  - apply for fixed size */
+	  margin: 0.2em;
+	  padding: 0 15px 0 46px;
+	  border: none;
+	  text-align: left;
+	  line-height: 34px;
+	  white-space: nowrap;
+	  border-radius: 0.2em;
+	  font-size: 16px;
+	  color: #FFF;
+	}
+	.loginBtn:before {
+	  content: "";
+	  box-sizing: border-box;
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 34px;
+	  height: 100%;
+	}
+	.loginBtn:focus {
+	  outline: none;
+	}
+	.loginBtn:active {
+	  box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+	}
+
+
+	/* Google */
+	.loginBtn--google {
+	  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+	  background: #DD4B39;
+	}
+	.loginBtn--google:before {
+	  border-right: #BB3F30 1px solid;
+	  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 6px 6px no-repeat;
+	}
+	.loginBtn--google:hover,
+	.loginBtn--google:focus {
+	  background: #E74B37;
+	}
+	.account{
+		color: #919191;
+	}
+	img .img-responsive{
+  		width:100%;
+  		max-width:100%;
+	}
+	.carousel-inner
+	{
+		margin-top: -20px;
+	}

@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+{% load static %}
+   {% block title %}
+      {{ title }}
+    {% endblock %}
+
+{% block content %}
+
+<div class="signup-form">
+    <form class=login method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+		<h2>{{ title }}</h2>
+        {{ form }}
+        <button type="submit" class="btn btn-success btn-lg btn-block">{{ title }}</button>
+        <div class="or-seperator"><i>or</i></div>
+        <div class="login-form" style="text-align:center;">
+        <button class="loginBtn loginBtn--google"><a href="{% url 'social:begin' 'google-oauth2' %}">
+          Login with Google</a>
+        </button>
+        </div>
+
+    </form>
+<div class="text-center"> <p class="account">Don't have an account?   <a href="{% url 'signup'%}">Create an account!</a></p></div>
+</div>
+{% endblock %}

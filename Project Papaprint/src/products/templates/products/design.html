@@ -1,0 +1,150 @@
+{% extends 'home.html' %}
+{% load static %}
+
+    {% block content %}
+<div class="panel-group">
+    <div class="menu" style="position: absolute; left: 13%;">
+    <div class="panel panel-default"  style="height: 446px;width: 200px; position: relative; left: -50%;">
+            <h2> Add Image </h2>
+            <input type="file" id="file"/>
+            <hr>
+            <input id="text-string" type="text" placeholder="add text here...">
+            <br>
+            <br>
+            <input id="add-text" type="button" value="Add text"/>
+            <hr>
+            <h3> T-shirt Color</h3>
+            <div class="well">
+               <div id="canvas-background">
+                  Choose Color: <input type="color" id="bgtshirt" bind-value-to="canvasBgColor">
+
+                </div>
+              </div>
+        <hr>
+                <h2>Save Design</h2>
+                <input id="b" type="button" value="Save Design"/>
+    </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-6" style="position: absolute; left: 45%;">
+    <div class="panel panel-default"  style="height: 650px;width: 540px; position: relative; left: -50%;">
+
+        <canvas id="c" width="510" height="600" ></canvas>
+        <script>
+
+        var canvas = new fabric.Canvas('c');
+
+        var imageUrl = "/media/crew_front.png";
+
+        canvas.setBackgroundImage(imageUrl, canvas.renderAll.bind(canvas), {
+            backgroundImageOpacity: 0.5,
+            backgroundImageStretch: false
+        });
+        canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
+        document.getElementById('file').addEventListener("change", function (e) {
+              var file = e.target.files[0];
+              var reader = new FileReader();
+              reader.onload = function (f) {
+                var data = f.target.result;
+                fabric.Image.fromURL(data, function (oImg) {
+                  oImg.scaleToWidth(100);
+                  oImg.scaleToHeight(100);
+                  oImg.setControlsVisibility(HideControls);
+                  canvas.add(oImg).renderAll();
+                  var a = canvas.setActiveObject(oImg);
+                  var dataURL = canvas.toDataURL({format: 'png', quality: 0.8});
+                });
+              };
+              reader.readAsDataURL(file);
+            });
+
+        $("#b").click(function(){
+            $("#c").get(0).toBlob(function (blob){
+                saveAs(blob, "Design.jpg");
+            });
+        });
+            var HideControls = {
+            'tl':true,
+            'tr':false,
+            'bl':true,
+            'br':true,
+            'ml':true,
+            'mt':true,
+            'mr':true,
+            'mb':true,
+            'mtr':true
+        };
+        function addDeleteBtn(x, y){
+            $(".deleteBtn").remove();
+            var btnLeft = x+4;
+            var btnTop = y+4;
+            var deleteBtn = '<img src="/media/delete.png" class="deleteBtn" style="position:absolute;top:'+btnTop+'px;left:'+btnLeft+'px;cursor:pointer;width:20px;height:20px;"/>';
+            $(".canvas-container").append(deleteBtn);
+        }
+
+        canvas.on('object:selected',function(e){
+                addDeleteBtn(e.target.oCoords.tr.x, e.target.oCoords.tr.y);
+        });
+
+        canvas.on('mouse:down',function(e){
+            if(!canvas.getActiveObject())
+            {
+                $(".deleteBtn").remove();
+            }
+        });
+
+        canvas.on('object:modified',function(e){
+            addDeleteBtn(e.target.oCoords.tr.x, e.target.oCoords.tr.y);
+        });
+
+        canvas.on('object:scaling',function(e){
+            $(".deleteBtn").remove();
+        });
+        canvas.on('object:moving',function(e){
+            $(".deleteBtn").remove();
+        });
+        canvas.on('object:rotating',function(e){
+            $(".deleteBtn").remove();
+        });
+        $(document).on('click',".deleteBtn",function(){
+            if(canvas.getActiveObject())
+            {
+                canvas.remove(canvas.getActiveObject());
+                $(".deleteBtn").remove();
+            }
+        });
+            document.getElementById('add-text').onclick = function() {
+                var text = $("#text-string").val();
+                var textSample = new fabric.Text(text, {
+                    left: fabric.util.getRandomInt(0, 200),
+                    top: fabric.util.getRandomInt(0, 400),
+                    fontFamily: 'Times new roman',
+                    angle: 0,
+                    fill: '#000000',
+                    scaleX: 0.5,
+                    scaleY: 0.5,
+                    fontWeight: '',
+                    hasRotatingPoint: true
+                });
+                canvas.add(textSample);
+            };
+	  	    $("#text-string").keyup(function(){
+	  		var activeObject = canvas.getActiveObject();
+		      if (activeObject && activeObject.type === 'text') {
+		    	  activeObject.text = this.value;
+		    	  canvas.renderAll();
+		      }
+	  	});
+         var theInput = document.getElementById("bgtshirt");
+         var theColor = theInput.value;
+         theInput.addEventListener("input", function() {
+             canvas.setBackgroundColor(theInput.value, canvas.renderAll.bind(canvas));
+          }, false);
+
+</script>
+    </div>
+    </div>
+
+        </div>
+
+
+{% endblock %}

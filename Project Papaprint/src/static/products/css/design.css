@@ -1,0 +1,48 @@
+#c {
+    border: 1px solid white;
+    position: relative;
+    margin-left: 14px;
+    margin-top: 12px;
+
+}
+.panel-default{
+
+margin-bottom: -10px;
+}
+#b{
+    position: relative;
+    margin-left: 45px;
+
+}
+#file{
+
+    margin-left: 8px;
+}
+.image-upload > input
+{
+    display: none;
+}
+#text-string
+{
+    margin-left: 8px;
+    position: absolute;
+}
+#add-text{
+    margin-left: 57px;
+}
+h2 {
+
+    margin-left: 8px;
+}
+.select2 font-change{
+    color: black;
+}
+.customPageBackground{
+    background: blue;
+}
+#bgtshirt{
+    padding-left: -10px;
+}
+h3 {
+    margin-left: 8px;
+}
