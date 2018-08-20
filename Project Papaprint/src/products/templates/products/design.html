@@ -1,150 +1,255 @@
 {% extends 'home.html' %}
 {% load static %}
+{% block title %}
+      Design
+    {% endblock %}
 
-    {% block content %}
+{% block content %}
 <div class="panel-group">
     <div class="menu" style="position: absolute; left: 13%;">
-    <div class="panel panel-default"  style="height: 446px;width: 200px; position: relative; left: -50%;">
+    <div class="panel panel-default"  style="height: 500px;width: 200px; position: relative; left: -50%;">
             <h2> Add Image </h2>
             <input type="file" id="file"/>
             <hr>
+            <h4>Enter text below</h4>
             <input id="text-string" type="text" placeholder="add text here...">
-            <br>
-            <br>
-            <input id="add-text" type="button" value="Add text"/>
+            <br><br>
+            <input id="add-text" type="submit" value="Add Text">
+            <br><hr>
+            <h4>Select Font</h4>
+            <select id="select2 font-change" data-type="fontFamily" style="margin-left: 8px;">
+              <option value="Arial">Arial</option>
+              <option value="Arial Black">Arial Black</option>
+              <option value="Impact">Impact</option>
+              <option value="Tahoma">Tahoma</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Ge">Times New Roman</option>
+            </select>
+            <div class="fontcolor">
+            Font Color: <input type="color" value="black" id="bgtext" bind-value-to="canvasBgColor">
+            </div>
+            <div class="style">
+                <h4>Style</h4>
+                <div class="btn-group">
+                <button id="text-bold" class="btn btn-secondary" data-original-title="Bold"><img src="/media/font_bold.png" height="" width=""></button>
+                <button id="text-italic" class="btn btn-secondary" data-original-title="Italic"><img src="/media/font_italic.png" height="" width=""></button>
+                <button id="text-underline" class="btn btn-secondary" data-original-title="Underline"><img src="/media/font_underline.png"></button>
+                </div>
+                </div>
             <hr>
             <h3> T-shirt Color</h3>
             <div class="well">
                <div id="canvas-background">
-                  Choose Color: <input type="color" id="bgtshirt" bind-value-to="canvasBgColor">
+                  Choose Color: <input type="color" value="#ffffff" id="bgtshirt" bind-value-to="canvasBgColor">
 
                 </div>
               </div>
-        <hr>
-                <h2>Save Design</h2>
-                <input id="b" type="button" value="Save Design"/>
-    </div>
-    </div>
-    <div class="col-md-6 col-sm-6 col-xs-6" style="position: absolute; left: 45%;">
-    <div class="panel panel-default"  style="height: 650px;width: 540px; position: relative; left: -50%;">
 
-        <canvas id="c" width="510" height="600" ></canvas>
-        <script>
+	</div>
+	</div>
+</div>
 
-        var canvas = new fabric.Canvas('c');
+		<div class="col-md-6 col-sm-6 col-xs-6" style="position: absolute; left: 45%;">
+		<div class="panel panel-default"  style="height: 650px;width: 540px; position: relative; left: -50%;">
+             <button id="flipback" type="button" class="btn" title="Rotate View"></button>
+			<canvas id="c" width="510" height="600" ></canvas>
+			<script>
 
-        var imageUrl = "/media/crew_front.png";
+			var canvas = new fabric.Canvas('c');
 
-        canvas.setBackgroundImage(imageUrl, canvas.renderAll.bind(canvas), {
-            backgroundImageOpacity: 0.5,
-            backgroundImageStretch: false
-        });
-        canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
-        document.getElementById('file').addEventListener("change", function (e) {
-              var file = e.target.files[0];
-              var reader = new FileReader();
-              reader.onload = function (f) {
-                var data = f.target.result;
-                fabric.Image.fromURL(data, function (oImg) {
-                  oImg.scaleToWidth(100);
-                  oImg.scaleToHeight(100);
-                  oImg.setControlsVisibility(HideControls);
-                  canvas.add(oImg).renderAll();
-                  var a = canvas.setActiveObject(oImg);
-                  var dataURL = canvas.toDataURL({format: 'png', quality: 0.8});
+			var imageUrl = "/media/crew_front.png";
+			var underline = document.getElementById('btn-underline');
+
+			canvas.setBackgroundImage(imageUrl, canvas.renderAll.bind(canvas), {
+				backgroundImageOpacity: 0.5,
+				backgroundImageStretch: false
+			});
+			canvas.setBackgroundColor('white', canvas.renderAll.bind(canvas));
+			document.getElementById('file').addEventListener("change", function (e) {
+				  var file = e.target.files[0];
+				  var reader = new FileReader();
+				  reader.onload = function (f) {
+					var data = f.target.result;
+					fabric.Image.fromURL(data, function (oImg) {
+					  oImg.scaleToWidth(100);
+					  oImg.scaleToHeight(100);
+					  oImg.setControlsVisibility(HideControls);
+					  canvas.add(oImg).renderAll();
+					  var a = canvas.setActiveObject(oImg);
+					  var dataURL = canvas.toDataURL({format: 'png', quality: 0.8});
+					});
+				  };
+				  reader.readAsDataURL(file);
+				});
+
+
+				var HideControls = {
+				'tl':true,
+				'tr':false,
+				'bl':true,
+				'br':true,
+				'ml':true,
+				'mt':true,
+				'mr':true,
+				'mb':true,
+				'mtr':true
+			};
+			function addDeleteBtn(x, y){
+				$(".deleteBtn").remove();
+				var btnLeft = x+4;
+				var btnTop = y+4;
+				var deleteBtn = '<img src="/media/delete.png" class="deleteBtn" style="position:absolute;top:'+btnTop+'px;left:'+btnLeft+'px;cursor:pointer;width:20px;height:20px;"/>';
+				$(".canvas-container").append(deleteBtn);
+			}
+
+			canvas.on('object:selected',function(e){
+					addDeleteBtn(e.target.oCoords.tr.x, e.target.oCoords.tr.y);
+			});
+
+			canvas.on('mouse:down',function(e){
+				if(!canvas.getActiveObject())
+				{
+					$(".deleteBtn").remove();
+				}
+			});
+
+			canvas.on('object:modified',function(e){
+				addDeleteBtn(e.target.oCoords.tr.x, e.target.oCoords.tr.y);
+			});
+
+			canvas.on('object:scaling',function(e){
+				$(".deleteBtn").remove();
+			});
+			canvas.on('object:moving',function(e){
+				$(".deleteBtn").remove();
+			});
+			canvas.on('object:rotating',function(e){
+				$(".deleteBtn").remove();
+			});
+			$(document).on('click',".deleteBtn",function(){
+				if(canvas.getActiveObject())
+				{
+					canvas.remove(canvas.getActiveObject());
+					$(".deleteBtn").remove();
+				}
+			});
+				document.getElementById('add-text').onclick = function() {
+					var text = $("#text-string").val();
+					var textSample = new fabric.IText(text, {
+						left: fabric.util.getRandomInt(0, 200),
+						top: fabric.util.getRandomInt(0, 400),
+						fontFamily: 'Arial',
+						angle: 0,
+						fill: '#000000',
+						fontWeight: '',
+						hasRotatingPoint: true
+					});
+					canvas.add(textSample);
+				canvas.item(canvas.item.length-1).hasRotatingPoint = true;
+				$("#texteditor").css('display', 'block');
+				$("#imageeditor").css('display', 'block');
+
+				};
+				$("#text-string").keyup(function(){
+				var activeObject = canvas.getActiveObject();
+				  if (activeObject && activeObject.type === 'text') {
+					  activeObject.text = this.value;
+					  canvas.renderAll();
+				  }
+			});
+			 var theInput = document.getElementById("bgtshirt");
+			 var theColor = theInput.value;
+			 theInput.addEventListener("input", function() {
+				 canvas.setBackgroundColor(theInput.value, canvas.renderAll.bind(canvas));
+			  }, false);
+
+			 var a = document.getElementById('select2 font-change');
+             a.addEventListener('change', function() {
+                 canvas.getActiveObject().set("fontFamily", this.value);
+                canvas.requestRenderAll();
+             }, false);
+
+              var b = document.getElementById('bgtext');
+              var thecolortxt = theInput.value;
+              b.addEventListener('change', function() {
+                 canvas.getActiveObject().setColor(this.value);
+                canvas.requestRenderAll();
+             }, false);
+
+                var underline = document.getElementById('text-underline');
+                var bold = document.getElementById('text-bold');
+                var italic = document.getElementById('text-italic');
+
+                underline.addEventListener('click', function() {
+                  dtEditText('underline');
                 });
-              };
-              reader.readAsDataURL(file);
-            });
 
-        $("#b").click(function(){
-            $("#c").get(0).toBlob(function (blob){
-                saveAs(blob, "Design.jpg");
-            });
-        });
-            var HideControls = {
-            'tl':true,
-            'tr':false,
-            'bl':true,
-            'br':true,
-            'ml':true,
-            'mt':true,
-            'mr':true,
-            'mb':true,
-            'mtr':true
-        };
-        function addDeleteBtn(x, y){
-            $(".deleteBtn").remove();
-            var btnLeft = x+4;
-            var btnTop = y+4;
-            var deleteBtn = '<img src="/media/delete.png" class="deleteBtn" style="position:absolute;top:'+btnTop+'px;left:'+btnLeft+'px;cursor:pointer;width:20px;height:20px;"/>';
-            $(".canvas-container").append(deleteBtn);
-        }
-
-        canvas.on('object:selected',function(e){
-                addDeleteBtn(e.target.oCoords.tr.x, e.target.oCoords.tr.y);
-        });
-
-        canvas.on('mouse:down',function(e){
-            if(!canvas.getActiveObject())
-            {
-                $(".deleteBtn").remove();
-            }
-        });
-
-        canvas.on('object:modified',function(e){
-            addDeleteBtn(e.target.oCoords.tr.x, e.target.oCoords.tr.y);
-        });
-
-        canvas.on('object:scaling',function(e){
-            $(".deleteBtn").remove();
-        });
-        canvas.on('object:moving',function(e){
-            $(".deleteBtn").remove();
-        });
-        canvas.on('object:rotating',function(e){
-            $(".deleteBtn").remove();
-        });
-        $(document).on('click',".deleteBtn",function(){
-            if(canvas.getActiveObject())
-            {
-                canvas.remove(canvas.getActiveObject());
-                $(".deleteBtn").remove();
-            }
-        });
-            document.getElementById('add-text').onclick = function() {
-                var text = $("#text-string").val();
-                var textSample = new fabric.Text(text, {
-                    left: fabric.util.getRandomInt(0, 200),
-                    top: fabric.util.getRandomInt(0, 400),
-                    fontFamily: 'Times new roman',
-                    angle: 0,
-                    fill: '#000000',
-                    scaleX: 0.5,
-                    scaleY: 0.5,
-                    fontWeight: '',
-                    hasRotatingPoint: true
+                bold.addEventListener('click', function() {
+                  dtEditText('bold');
                 });
-                canvas.add(textSample);
-            };
-	  	    $("#text-string").keyup(function(){
-	  		var activeObject = canvas.getActiveObject();
-		      if (activeObject && activeObject.type === 'text') {
-		    	  activeObject.text = this.value;
-		    	  canvas.renderAll();
-		      }
-	  	});
-         var theInput = document.getElementById("bgtshirt");
-         var theColor = theInput.value;
-         theInput.addEventListener("input", function() {
-             canvas.setBackgroundColor(theInput.value, canvas.renderAll.bind(canvas));
-          }, false);
+
+                italic.addEventListener('click', function() {
+                  dtEditText('italic');
+                });
+
+                // Functions
+                function dtEditText(action) {
+                    var a = action;
+                    var o = canvas.getActiveObject();
+                    var t;
+
+                    // If object selected, what type?
+                    if (o) {
+                        t = o.get('type');
+                    }
+
+                    if (o && t === 'i-text') {
+                        switch(a) {
+                            case 'bold':
+                                var isBold = dtGetStyle(o, 'fontWeight') === 'bold';
+                                dtSetStyle(o, 'fontWeight', isBold ? '' : 'bold');
+                            break;
+
+                            case 'italic':
+                                var isItalic = dtGetStyle(o, 'fontStyle') === 'italic';
+                                dtSetStyle(o, 'fontStyle', isItalic ? '' : 'italic');
+                            break;
+
+                            case 'underline':
+                                var isUnderline = dtGetStyle(o, 'textDecoration') === 'underline';
+                                dtSetStyle(o, 'textDecoration', isUnderline ? '' : 'underline');
+                            break;
+                            canvas.renderAll();
+                        }
+                    }
+                }
+                // Get the style
+                function dtGetStyle(object, styleName) {
+                    return object[styleName];
+                }
+
+                // Set the style
+                function dtSetStyle(object, styleName, value) {
+                    object.set(styleName, value);
+                    canvas.renderAll();
+                }
 
 </script>
     </div>
     </div>
 
-        </div>
+
+	<div class="panel panel-default"  style="height: 650px;width: 425px; position: relative; left: 66%;">
+                <h2>Save Design</h2>
+                <input id="b" type="button" value="Save Design"/>
+        <script>
+            	$("#b").click(function(){
+				$("#c").get(0).toBlob(function (blob){
+					saveAs(blob, "Design.jpg");
+				});
+			});
+        </script>
+	</div>
 
 
 {% endblock %}

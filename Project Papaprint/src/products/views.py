@@ -13,3 +13,6 @@ def homepage_view(request):
 def design_view(request):
     return render(request, "products/design.html")
 
+def test_view(request):
+    return render(request, "products/test.html")
+

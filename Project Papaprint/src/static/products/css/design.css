@@ -17,6 +17,7 @@ margin-bottom: -10px;
 #file{
 
     margin-left: 8px;
+
 }
 .image-upload > input
 {
@@ -27,13 +28,18 @@ margin-bottom: -10px;
     margin-left: 8px;
     position: absolute;
 }
-#add-text{
-    margin-left: 57px;
+.btn{
+    background-color: #42f4b0;
 }
 h2 {
 
     margin-left: 8px;
 }
+h4 {
+
+    margin-left: 8px;
+}
+
 .select2 font-change{
     color: black;
 }
@@ -45,4 +51,46 @@ h2 {
 }
 h3 {
     margin-left: 8px;
+}
+.Arial{font-family:"Arial";}
+		.Helvetica{font-family:"Helvetica";}
+		.MyriadPro{font-family:"Myriad Pro";}
+		.Delicious{font-family:"Delicious";}
+		.Verdana{font-family:"Verdana";}
+		.Georgia{font-family:"Georgia";}
+		.Courier{font-family:"Courier";}
+		.ComicSansMS{font-family:"Comic Sans MS";}
+		.Impact{font-family:"Impact";}
+		.Monaco{font-family:"Monaco";}
+		.Optima{font-family:"Optima";}
+		.HoeflerText{font-family:"Hoefler Text";}
+		.Plaster{font-family:"Plaster";}
+		.Engagement{font-family:"Engagement";}
+h4 {
+    font-weight: bold;
+}
+.fontcolor
+{
+    margin: 10px;
+
+}
+.btn-secondary{
+
+    background-color: #42f4b0;
+}
+
+.btn
+{
+
+    background-color: #42f4b0;
+}
+.btn-group
+{
+    margin-left: 4px;
+}
+#add-text
+{
+    margin-left: 55px;
+    background-color: #42f4b0;
+
 }
