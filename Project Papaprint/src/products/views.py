@@ -18,3 +18,10 @@ def test_view(request):
 
 def Portfolio_view(request):
     return render(request, "portfolio/portfolio.html")
+
+def About_view(request):
+    return render(request, "products/about.html")
+
+def Faqs_view(request):
+    return render(request, "products/faqs.html")
+
