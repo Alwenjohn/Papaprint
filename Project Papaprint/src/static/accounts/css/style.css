@@ -7,6 +7,9 @@
 }
 .item img{
   width: 100%;
+	height: 1000px;
+  width: 100%
+
 }
 body{
 		color: #000000;
@@ -143,11 +146,14 @@ body{
 	.account{
 		color: #919191;
 	}
-	img .img-responsive{
-  		width:100%;
-  		max-width:100%;
-	}
+
 	.carousel-inner
 	{
 		margin-top: -20px;
+	}
+
+	.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+		display: block;
+		max-width: 100%;
+		height: 450px;
 	}
