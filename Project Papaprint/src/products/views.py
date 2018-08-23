@@ -16,3 +16,5 @@ def design_view(request):
 def test_view(request):
     return render(request, "products/test.html")
 
+def Portfolio_view(request):
+    return render(request, "portfolio/portfolio.html")

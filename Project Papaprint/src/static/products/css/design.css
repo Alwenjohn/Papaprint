@@ -53,6 +53,7 @@ h3 {
     margin-left: 8px;
 }
 .Arial{font-family:"Arial";}
+.ArialBlack{font-family: "Arial Black"}
 		.Helvetica{font-family:"Helvetica";}
 		.MyriadPro{font-family:"Myriad Pro";}
 		.Delicious{font-family:"Delicious";}
@@ -66,6 +67,9 @@ h3 {
 		.HoeflerText{font-family:"Hoefler Text";}
 		.Plaster{font-family:"Plaster";}
 		.Engagement{font-family:"Engagement";}
+        .Tahoma{font-family:"Tahoma"}
+        .Timesnewroman{font-family:"Times New Roman";}
+        .verdana{font-family: "Verdana";}
 h4 {
     font-weight: bold;
 }

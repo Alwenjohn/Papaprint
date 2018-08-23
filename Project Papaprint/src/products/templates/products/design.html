@@ -18,12 +18,20 @@
             <br><hr>
             <h4>Select Font</h4>
             <select id="select2 font-change" data-type="fontFamily" style="margin-left: 8px;">
-              <option value="Arial">Arial</option>
-              <option value="Arial Black">Arial Black</option>
-              <option value="Impact">Impact</option>
-              <option value="Tahoma">Tahoma</option>
-              <option value="Times New Roman">Times New Roman</option>
-              <option value="Ge">Times New Roman</option>
+                  <option class="Arial" value="Arial">Arial</option>
+                  <option class="ArialBlack" value="Arial Black">Arial Black</option>
+                  <option class="Impact" value="Impact">Impact</option>
+                  <option class="Tahoma" value="Tahoma">Tahoma</option>
+                  <option class="Timesnewroman" value="Times New Roman">Times New Roman</option>
+                  <option class="verdana" value="Verdana">Verdana</option>
+                  <option class="Courier" value="Courier">Courier</option>
+                  <option class="ComicSansMS" value="ComicSansMS">ComicSansMS</option>
+                  <option class="Impact" value="Impact">Impact</option>
+                  <option class="Monaco" value="Monaco">Monaco</option>
+                  <option class="Optima" value="Optima">Optima</option>
+                  <option class="HoeflerText" value="HoeflerText">HoeflerText</option>
+                  <option class="Plaster" value="Plaster">Plaster</option>
+                  <option class="Engagement" value="Engagement">Engagement</option>
             </select>
             <div class="fontcolor">
             Font Color: <input type="color" value="black" id="bgtext" bind-value-to="canvasBgColor">
@@ -233,13 +241,19 @@
                     object.set(styleName, value);
                     canvas.renderAll();
                 }
-
 </script>
     </div>
     </div>
 
-
 	<div class="panel panel-default"  style="height: 650px;width: 425px; position: relative; left: 66%;">
+                 <span style="display:inline-block">
+                    <select class="form-control" id="categories">
+                        {% for category in category %}
+                        <option>{{category.productname.url}}</option>
+                        {% endfor %}
+                    </select>
+
+                </span>
                 <h2>Save Design</h2>
                 <input id="b" type="button" value="Save Design"/>
         <script>
@@ -249,6 +263,7 @@
 				});
 			});
         </script>
+
 	</div>
 
 
