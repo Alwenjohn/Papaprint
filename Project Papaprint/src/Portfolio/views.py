@@ -5,6 +5,7 @@ def Category_view(request):
 
     categories = Category.objects.all()
 
+
     context = {
         'categories': categories
     }

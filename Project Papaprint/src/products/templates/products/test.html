@@ -14,8 +14,7 @@
     <![endif]-->
     <!--[if IE]><script type="text/javascript" src="{% static 'products/js/excanvas.js' %"></script><![endif]-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<script type="text/javascript" src="{% static 'products/js/fabric.js' %}"></script>
-
+		<script src="{% static 'products/js/fabric.min.js' %}"></script>
 
     <!-- Le styles -->
     <link type="text/css" rel="stylesheet" href="{% static 'products/css/jquery.miniColors.css" />
@@ -144,6 +143,7 @@
 							</div>
                             <div>
                                 <hr>
+								{% csrf_token %}
 							     <form action="" method="post" enctype="multipart/form-data">
                                      <input type="file" name="fileToUpload" id="fileToUpload">
                                      <input class="btn btn-primary" type="submit" value="Upload Custom Image" name="submit">

@@ -7,8 +7,8 @@ from django.contrib.auth import (
 )
 User = get_user_model()
 class UserLoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': 'required'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'form-control', 'required': 'required', 'placeholder': 'Username', 'autocomplete': 'off','pattern':'[A-Za-z]([A-Za-z]{4}|[A-Za-z][0-9]|[0-9]{4})[0-9]{0,6}$', 'title':'Enter Characters Only and Letters should be more than 5'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get("username")
@@ -20,16 +20,16 @@ class UserLoginForm(forms.Form):
 
 
 class UserSignupForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': 'required'}))
-    email2 = forms.EmailField(label='Email Address', widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label='Confirm Email Address', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'required': 'required', 'placeholder': 'Enter Username', 'autocomplete': 'off','pattern':'[A-Za-z]([A-Za-z]{4}|[A-Za-z][0-9]|[0-9]{4})[0-9]{0,6}$', 'title':'Enter Characters Only and Letters should be more than 5'}))
+    email2 = forms.EmailField(label='Confirm Email Address', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Email'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
+    email = forms.EmailField(label='Email Address', widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
     class Meta:
         model = User
         fields = [
             'username',
-            'email2',
             'email',
+            'email2',
             'password'
         ]
     def clean(self, *args, **kwargs):
@@ -37,6 +37,7 @@ class UserSignupForm(forms.ModelForm):
         email = self.cleaned_data.get('email'),
         email2 = self.cleaned_data.get('email2'),
         print(email, email2)
+
         if User.objects.filter(username=self.cleaned_data['username']).exists():
             raise forms.ValidationError('username already exist')
         if not email == email2:
@@ -45,3 +46,5 @@ class UserSignupForm(forms.ModelForm):
         if email_qs.exists():
             raise forms.ValidationError ('This email is already been registered')
         return super(UserSignupForm, self).clean(*args, **kwargs)
+
+

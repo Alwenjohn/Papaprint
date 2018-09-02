@@ -1,4 +1,13 @@
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch.dispatcher import receiver
+from django.contrib.auth.models import User
+from django.core.exceptions import PermissionDenied
+
+@receiver(pre_delete, sender=User)
+def delete_user(sender, instance, **kwargs):
+    if instance.is_superuser:
+        raise PermissionDenied
 
 class Category(models.Model):
     class Meta:
@@ -20,4 +29,5 @@ class Item(models.Model):
 
     def __str__(self):
         return self.description
+
 
