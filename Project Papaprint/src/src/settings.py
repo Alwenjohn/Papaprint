@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'social_django',
     'accounts',
     'products',
-    'Portfolio',
-    'reports',
+    'cart',
     'orders'
 ]
 

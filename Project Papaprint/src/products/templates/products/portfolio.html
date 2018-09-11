@@ -1,0 +1,149 @@
+{% extends 'home.html' %}
+{% load static %}
+   {% block title %}
+      Portfolio
+    {% endblock %}
+
+
+{% block content %}
+<div  class="container-fluid">
+   {% for category in category %}
+    <div class="row">
+        <h3>{{ category.productname }}</h3>
+      {% for item in item %}
+        <div class="col-md-3">
+          <a href="{{ item.image.url }}" class="thumbnail">
+          <img src="{{ item.image.url }}"/>
+        </a>
+      </div>
+      {% endfor %}
+
+
+<a href="#"><h3>See More</h3></a>
+</div>
+  {% endfor %}
+<div class="row">
+  <h3>Lace/Lanyard</h3></h3>
+  <div class="col-md-3">
+    <a href="/media/lace/gmalace1.jpg" class="thumbnail">
+    <img src="/media/lace/gmalace1.jpg"/>
+  </a>
+</div>
+<div class="col-md-3">
+  <a href="/media/lace/gmalace2.jpg" class="thumbnail">
+  <img src="/media/lace/gmalace2.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/lace/gmalace3.jpg" class="thumbnail">
+<img src="/media/lace/gmalace3.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/lace/gmalace4.jpg" class="thumbnail">
+<img src="/media/lace/gmalace4.jpg"/>
+</a>
+</div>
+<a href="#"><h3>See More</h3></a>
+</div>
+<div class="row">
+  <h3>Canvas Bags</h3></h3>
+  <div class="col-md-3">
+    <a href="/media/CanvasBag/canvas1.jpg" class="thumbnail">
+    <img src="/media/CanvasBag/canvas1.jpg"/>
+  </a>
+</div>
+<div class="col-md-3">
+  <a href="/media/CanvasBag/canvas2.jpgg" class="thumbnail">
+  <img src="/media/CanvasBag/canvas2.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/CanvasBag/canvas3.jpg" class="thumbnail">
+<img src="/media/CanvasBag/canvas3.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/CanvasBag/canvas4.jpg" class="thumbnail">
+<img src="/media/CanvasBag/canvas4.jpg"/>
+</a>
+</div>
+<a href="#"><h3>See More</h3></a>
+</div>
+<div class="row">
+  <h3>Mugs</h3></h3>
+  <div class="col-md-3">
+    <a href="/media/Mug/1.jpg" class="thumbnail">
+    <img src="/media/Mug/1.jpg"/>
+  </a>
+</div>
+<div class="col-md-3">
+  <a href="/media/Mug/2.jpg" class="thumbnail">
+  <img src="/media/Mug/2.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/Mug/3.jpg" class="thumbnail">
+<img src="/media/Mug/3.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/Mug/5.jpg" class="thumbnail">
+<img src="/media/Mug/5.jpg"/>
+</a>
+</div>
+<a href="#"><h3>See More</h3></a>
+</div>
+<div class="row">
+  <h3>ID</h3></h3>
+  <div class="col-md-3">
+    <a href="/media/id/1.jpg" class="thumbnail">
+    <img src="/media/id/1.jpg"/>
+  </a>
+</div>
+<div class="col-md-3">
+  <a href="/media/id/2.jpg" class="thumbnail">
+  <img src="/media/id/2.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/id/3.jpg" class="thumbnail">
+<img src="/media/id/3.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/id/4.jpg" class="thumbnail">
+<img src="/media/id/4.jpg"/>
+</a>
+</div>
+<a href="#"><h3>See More</h3></a>
+</div>
+
+<div class="row">
+  <h3>Sticker</h3></h3>
+  <div class="col-md-3">
+    <a href="/media/sticker/1.png" class="thumbnail">
+    <img src="/media/sticker/1.png"/>
+  </a>
+</div>
+<div class="col-md-3">
+  <a href="/media/sticker/2.jpg" class="thumbnail">
+  <img src="/media/sticker/2.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/sticker/3.jpg" class="thumbnail">
+<img src="/media/sticker/3.jpg"/>
+</a>
+</div>
+<div class="col-md-3">
+<a href="/media/sticker/4.jpg" class="thumbnail">
+<img src="/media/sticker/4.jpg"/>
+</a>
+</div>
+<a href="#"><h3>See More</h3></a>
+</div>
+
+
+</div>
+{% endblock %}

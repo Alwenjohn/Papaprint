@@ -22,7 +22,7 @@ def login_view(request):
             login(request, user)
         return redirect('/home/')
     else:
-        return render(request, "home.html", {"form": form, "title": title})
+        return render(request, "accounts/Login.html", {"form": form, "title": title})
 
 def signup_view(request):
     print(request.user.is_authenticated)

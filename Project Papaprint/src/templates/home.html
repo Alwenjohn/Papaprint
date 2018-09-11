@@ -21,13 +21,15 @@
     <script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.14.0/js/canvas-to-blob.js"></script>
     <script src="{% static 'products/js/fabric.min.js' %}"></script>
-    <link rel="shortcut icon" type="image/png" href="{% static 'accounts/paprint.png' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'accounts/home.png' %}"/>
     <link rel="stylesheet" type="text/css" href="{% static 'accounts/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="/media/css/style.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'products/css/design.css' %}" />
-
     {% endblock %}
 </head>
 <body>
+
+<div id="topheader">
  <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <!--Logo-->
@@ -50,6 +52,7 @@
                             <ul class="dropdown-menu">
                             <li ><a href="{% url 'aboutus' %}">About us</a></li>
                             <li ><a href="{% url 'faqs' %}">FAQs</a></li>
+                            <li ><a href="{% url 'contactus' %}">Contact Us</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -66,42 +69,14 @@
                       </li>
                     </ul>
                 {% else %}
-                <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                    <ul id="login-dp" class="dropdown-menu">
-                        <li>
-                             <div class="row">
-                                    <div class="col-md-12">
-                                        Login via
-                                        <div class="social-buttons">
-                                            <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-tw"><i class="fab fa-google"></i> Google</a>
-                                        </div>
-                                        or
-                                        {{ form }}
-                                                     <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-                                                <div class="form-group">
-                                                     <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
-                                                </div>
-                                                <div class="checkbox">
-                                                     <label>
-                                                     <input type="checkbox"> keep me logged-in
-                                                     </label>
-                                                </div>
-                                         </form>
-                                    </div>
-                                    <div class="bottom text-center">
-                                        New here ? <a href="#"><b>Join Us</b></a>
-                                    </div>
-                             </div>
-                        </li>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li ><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span> Login </a></li>
+                        {% endif%}
                     </ul>
-                </li>
-                </ul>
-                {% endif %}
-            </div>
+           </div>
         </div>
-    </nav>
+ </nav>
+</div>
 {% block content %}
  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="5000">
 
@@ -119,8 +94,150 @@
 
               </div>
 
+    </div>
+    <div class="container-fluid">
+
+                  <div class="row">
+
+                    <div class="col-md-4">
+                      <a href="{% url 'aboutus' %}"><img src ="/media/about.png" class="center"/></a>
+                    </div>
+                    <div class="col-md-4">
+                      <a href="{% url 'faqs' %}"><img src ="/media/faqs.png" /></a>
+                    </div>
+                    <div class="col-md-4">
+                      <a href="{% url 'contactus' %}"><img src ="/media/contact.png" /></a>
+                    </div>
+
+                  </div>
+    </div>
+    <div  class="container-fluid">
+        <div class="row">
+        <center>
+           <h1>Past Client</h1>
+        </center>
+            <div class="col-md-3">
+              <a href="/media/clientlogo/1.png" class="thumbnail">
+                <img src="/media/clientlogo/1.png"/>
+              </a>
+            </div>
+            <div class="col-md-3">
+              <a href="/media/clientlogo/2.jpg" class="thumbnail">
+              <img src="/media/clientlogo/2.jpg"/>
+            </a>
           </div>
-
-</body>
-
+          <div class="col-md-3">
+            <a href="/media/clientlogo/3.jpg" class="thumbnail">
+            <img src="/media/clientlogo/3.jpg"/>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="/media/clientlogo/4.png" class="thumbnail">
+          <img src="/media/clientlogo/4.png"/>
+        </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/media/clientlogo/5.png" class="thumbnail">
+              <img src="/media/clientlogo/5.png"/>
+            </a>
+          </div>
+          <div class="col-md-3">
+            <a href="/media/clientlogo/6.jpg" class="thumbnail">
+            <img src="/media/clientlogo/6.jpg"/>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="/media/clientlogo/7.png" class="thumbnail">
+          <img src="/media/clientlogo/7.png"/>
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="/media/clientlogo/8.jpg" class="thumbnail">
+        <img src="/media/clientlogo/8.jpg"/>
+      </a>
+        </div>
+        <div class="col-md-3">
+          <a href="/media/clientlogo/9.png" class="thumbnail">
+            <img src="/media/clientlogo/9.png"/>
+          </a>
+        </div>
+        <div class="col-md-3">
+          <a href="/media/clientlogo/10.png" class="thumbnail">
+          <img src="/media/clientlogo/10.png"/>
+        </a>
+      </div>
+      <div class="col-md-3">
+        <a href="/media/clientlogo/11.jpg" class="thumbnail">
+        <img src="/media/clientlogo/11.jpg"/>
+      </a>
+    </div>
+        </div>
+  </div>
 {% endblock %}
+    <hr />
+
+
+<div class="row">
+  <div class="col-md-12">
+    <!-- Footer -->
+    <footer class="page-footer font-small teal pt-4">
+
+        <!-- Footer Text -->
+        <div class="container-fluid text-center text-md-left">
+
+          <!-- Grid row -->
+          <div class="row">
+              <h3 class="text-uppercase font-weight-bold text-center">PAPAPRINT OPERATION</h3>
+            <!-- Grid column -->
+            <div class="col-md-6">
+
+              <!-- Content -->
+
+              <h4>Email</h4>
+              <p>jane.perez@yahoo.com</p>
+              <p>jane.perez@gmail.com</p>
+
+            </div>
+            <!-- Grid column -->
+
+
+
+            <!-- Grid column -->
+
+            <div class="col-md-6">
+
+              <!-- Content -->
+              <h5 class="text-uppercase font-weight-bold"></h5>
+              <h4>Contact Number</h4>
+              <p>+639499302306</p>
+              <p>+639064152841</p>
+            </div>
+            <!-- Grid column -->
+
+          </div>
+          <!-- Grid row -->
+
+        </div>
+        <!-- Footer Text -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2018 Copyright:
+          <a href="https://www.youtube.com/watch?v=BjcFr7GhP0c"> Papaprint.com</a>
+        </div>
+        <!-- Copyright -->
+
+      </footer>
+      <!-- Footer -->
+
+    </div>
+  </div>
+    <script>
+        $( '#topheader .navbar-nav a' ).on( 'click', function () {
+        $( '#topheader .navbar-nav' ).find( 'li.active' ).removeClass( 'active' );
+        $( this ).parent( 'li' ).addClass( 'active' );
+        });
+    </script>
+    </body>
+
+
+
